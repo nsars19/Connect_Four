@@ -1,5 +1,4 @@
 require './lib/board'
-require_relative 'cell_spec'
 
 describe 'Board' do
   let(:game) { Board.new }
