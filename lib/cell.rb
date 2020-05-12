@@ -3,6 +3,7 @@ require_relative 'traversal'
 class Cell
   include Traversable
   attr_accessor :up_right, :up_left, :down_right, :down_left
+  attr_reader :color
 
   def initialize color
     @color = color
