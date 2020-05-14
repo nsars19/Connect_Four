@@ -33,10 +33,4 @@ describe 'Board' do
   describe '#display_board' do
     it 'outputs to stdout'
   end
-
-  ["horizontals", "verticals"].each do |line|
-    describe "get_#{line}" do
-      it 'returns arrays with one string element'
-    end
-  end
 end
