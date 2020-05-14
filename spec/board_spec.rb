@@ -15,7 +15,7 @@ describe 'Board' do
   end
 
   describe '#place_piece' do
-    it 'places a piece'
+    it 'places a piece in @board'
     it 'creates a cell'
   end
 
