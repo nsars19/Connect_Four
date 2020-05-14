@@ -13,10 +13,20 @@ module Traversable
     end
   end
 
+  def get_diagonals
+  end
+
+  def combine_diagonals upper, lower
+    # Reverse an array so they each 'point' the same direction
+    upper = upper.reverse
+    # Remove initial piece from one array so it is not counted twice 
+    combined_diagonal = upper + lower[1..-1]
+  end
+
   def get_horizontals board_array
     rows = []
     board_array.each do |row|
-      rows << row.join
+      row.each { |node| rows << node.color }
     end
     rows
   end
@@ -24,7 +34,7 @@ module Traversable
   def get_verticals board_array
     columns = []
     board_array.each do |column|
-      columns << column.join
+      column.each { |node| columns << node.color }
     end
     columns
   end
