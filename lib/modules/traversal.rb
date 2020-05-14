@@ -26,16 +26,13 @@ module Traversable
   def get_horizontals board_array
     rows = []
     board_array.each do |row|
-      row.each { |node| rows << node.color }
+      colors = []
+      row.each { |node| colors << node.color }
+      rows << [colors.join(' ')]
     end
     rows
   end
 
   def get_verticals board_array
-    columns = []
-    board_array.each do |column|
-      column.each { |node| columns << node.color }
-    end
-    columns
   end
 end
