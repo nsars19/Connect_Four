@@ -1,5 +1,5 @@
 require_relative 'cell'
-require_relative 'traversal'
+require_relative './modules/traversal'
 
 class Board
   include Traversable
