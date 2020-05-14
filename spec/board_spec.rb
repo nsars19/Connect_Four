@@ -25,9 +25,9 @@ describe 'Board' do
   end
 
   describe '#check_if_win' do
-    it 'checks diagonally'
-    it 'checks vertically'
-    it 'checks horizontally'
+    it 'checks diagonally for win'
+    it 'checks vertically for win'
+    it 'checks horizontally for win'
   end
 
   describe '#display_board' do
