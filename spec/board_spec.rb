@@ -25,7 +25,6 @@ describe 'Board' do
   end
 
   describe '#check_if_win' do
-    it 'accepts a block'
     it 'checks diagonally'
     it 'checks vertically'
     it 'checks horizontally'
