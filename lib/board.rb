@@ -1,6 +1,8 @@
 require_relative 'cell'
+require_relative 'traversal'
 
 class Board
+  include Traversable
   attr_accessor :board
 
   def initialize
