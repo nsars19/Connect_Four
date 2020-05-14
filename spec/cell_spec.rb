@@ -22,24 +22,33 @@ describe "Cell" do
     end
   end
 
-  ["horizontals", "verticals"].each do |line|
-    describe "#get_#{line}" do
-      let(:game) { Board.new }
+  context "when fetching rows & columns" do
+    let(:game) { Board.new }
+    
+    describe "#get_horizontals" do
       it 'returns nested arrays with strings' do
         game.board.each do |row|
           7.times { |i| row[i] = cell }
         end
-        horz_colors = ["red red red red red red red"]
-        grid_horz = Array.new(6) { horz_colors }
-        vert_colors = ["red red red red red red"]
-        grid_vert = Array.new(7) { vert_colors }
-        expect(cell.get_horizontals(game.board)).to eql grid_horz
-        expect(cell.get_verticals(game.board)).to eql grid_vert
+        colors = ["red red red red red red red"]
+        grid = Array.new(6) { colors }
+        expect(cell.get_horizontals(game.board)).to eql grid
       end
     end
-  end
+  
+    describe "#get_verticals" do
+      it 'returns nested arrays with strings' do
+        game.board.each do |row|
+          7.times { |i| row[i] = cell }
+        end
+        colors = ["red red red red red red"]
+        grid = Array.new(7) { colors }
+        expect(cell.get_verticals(game.board)).to eql grid
+      end
+    end
 
-  describe '#get_diagonals' do
-    it 'returns nested arrays with strings'
+    describe '#get_diagonals' do
+      it 'returns nested arrays with strings'
+    end
   end
 end
