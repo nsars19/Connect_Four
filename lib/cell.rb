@@ -1,7 +1,9 @@
 require_relative './modules/traversal'
+require_relative './modules/winnable'
 
 class Cell
   include Traversable
+  include Winnable
   attr_accessor :upper_right, :upper_left, :lower_right, :lower_left
   attr_reader :color
 
