@@ -51,7 +51,7 @@ describe "Cell" do
       let(:left_1) { Cell.new 'black' }
       let(:left_2) { Cell.new 'black' }
       let(:right_1) { Cell.new 'black' }
-      let(:right_2) { Cell.new 'red'}
+      let(:right_2) { Cell.new 'red' }
       it 'returns nested arrays with strings' do
         cell.upper_left = left_1; left_1.upper_left = left_2
         cell.lower_right = right_1; right_1.lower_right = right_2
