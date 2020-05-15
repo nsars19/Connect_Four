@@ -63,7 +63,7 @@ describe "Cell" do
 
   context "finding win conditions" do
     let(:true_row) { ['red', 'red', 'red', 'red'] }
-    let(:false_row) { ['red', 'red', 'black', 'red'] }
+    let(:false_row) { ['red', 'black', 'red'] }
     
     # Create examples for each of the _win? methods
     # examples check for true with four-in-a-row of the same color
