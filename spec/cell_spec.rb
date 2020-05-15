@@ -65,16 +65,30 @@ describe "Cell" do
     let(:true_row) { %w[red red red red] }
     let(:false_row) { %w[red red black red] }
     
-    describe "#diagonal_win?" do
-      it "returns true with four in a row" do
-        expect(cell.diagonal_win?(true_row)).to be(true) 
-      end
-      it "returns false without four in a row" do
-        expect(cell.diagonal_win?(false_row)).to be(false)
+    # Create examples for each of the _win? methods
+    # examples check for true with four-in-a-row of the same color
+    # and check for false without four-in-a-row of the same color 
+    ["diagonal_win?", "horizontal_win?", "vertical_win?"].each do |method|
+      describe "##{method}" do
+        it "returns true with four in a row" do
+          expect(cell.send("#{method}", true_row)).to be true
+        end
+
+        it "returns false without four in a row" do
+          expect(cell.send("#{method}", false_row)).to be false
+        end
       end
     end
+    # describe "#diagonal_win?" do
+    #   it "returns true with four in a row" do
+    #     expect(cell.diagonal_win?(true_row)).to be true
+    #   end
+    #   it "returns false without four in a row" do
+    #     expect(cell.diagonal_win?(false_row)).to be false
+    #   end
+    # end
 
-    describe "#horizontal_win?"
-    describe "#vertical_win?"
+    # describe "#horizontal_win?"
+    # describe "#vertical_win?"
   end
 end
