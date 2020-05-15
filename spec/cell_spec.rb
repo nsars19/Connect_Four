@@ -60,4 +60,21 @@ describe "Cell" do
       end
     end
   end
+
+  context "finding win conditions" do
+    let(:true_row) { %w[red red red red] }
+    let(:false_row) { %w[red red black red] }
+    
+    describe "#diagonal_win?" do
+      it "returns true with four in a row" do
+        expect(cell.diagonal_win?(true_row)).to be(true) 
+      end
+      it "returns false without four in a row" do
+        expect(cell.diagonal_win?(false_row)).to be(false)
+      end
+    end
+
+    describe "#horizontal_win?"
+    describe "#vertical_win?"
+  end
 end
