@@ -14,7 +14,6 @@ module Winnable
 
   ["horizontal_win?", "vertical_win?"].each do |method|
     define_method(method) do |line_array|
-      return false if line_array.size < 4
       # Check 4 items at a time eg. `[i..(i+3)]` for win conditions.
       # iterate over array to check all spaces. 4 times is the minimum
       # amount of steps needed to check all positions
