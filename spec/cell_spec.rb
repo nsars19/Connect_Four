@@ -30,7 +30,7 @@ describe "Cell" do
         game.board.each do |row|
           7.times { |i| row[i] = cell }
         end
-        colors = ["red red red red red red red"]
+        colors = ['red', 'red', 'red', 'red', 'red', 'red', 'red']
         grid = Array.new(6) { colors }
         expect(cell.get_horizontals(game.board)).to eql grid
       end
@@ -41,7 +41,7 @@ describe "Cell" do
         game.board.each do |row|
           7.times { |i| row[i] = cell }
         end
-        colors = ["red red red red red red"]
+        colors = ['red', 'red', 'red', 'red', 'red', 'red']
         grid = Array.new(7) { colors }
         expect(cell.get_verticals(game.board)).to eql grid
       end
