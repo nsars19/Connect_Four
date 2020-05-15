@@ -34,7 +34,7 @@ module Traversable
     board_array.each do |row|
       colors = []
       row.each { |node| colors << node.color }
-      rows << [colors.join(' ')]
+      rows << colors
     end
     rows
   end
@@ -46,7 +46,7 @@ module Traversable
       6.times do |vert_idx|
         colors << board_array[vert_idx][horz_idx].color
       end
-      columns << [colors.join(' ')]
+      columns << colors
     end
     columns
   end
