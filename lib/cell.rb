@@ -16,4 +16,8 @@ class Cell
     @lower_left  = nil
     @@count += 1
   end
+
+  def count
+    @@count
+  end
 end
