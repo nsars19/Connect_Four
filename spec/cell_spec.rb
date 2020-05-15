@@ -22,7 +22,7 @@ describe "Cell" do
     end
   end
 
-  context "when fetching rows & columns" do
+  context "fetches rows & columns" do
     let(:game) { Board.new }
     
     describe "#get_horizontals" do
@@ -48,7 +48,16 @@ describe "Cell" do
     end
 
     describe '#get_diagonals' do
-      it 'returns nested arrays with strings'
+      let(:left_1) { Cell.new 'black' }
+      let(:left_2) { Cell.new 'black' }
+      let(:right_1) { Cell.new 'black' }
+      let(:right_2) { Cell.new 'red'}
+      it 'returns nested arrays with strings' do
+        cell.upper_left = left_1; left_1.upper_left = left_2
+        cell.lower_right = right_1; right_1.lower_right = right_2
+        colors = [['red', 'black', 'red', 'black', 'black'],['red']]
+        expect(cell.get_diagonals).to eql colors
+      end
     end
   end
 end
