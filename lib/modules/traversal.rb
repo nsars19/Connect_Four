@@ -50,4 +50,20 @@ module Traversable
     end
     columns
   end
+
+  def connect_nodes board
+    board.each_with_index do |line, outer_idx|
+      line.each_with_index do |item, inner_idx|
+        if item.is_a? Cell
+          item.upper_left  = board[outer_idx + 1][inner_idx - 1]
+          item.upper_right = board[outer_idx + 1][inner_idx + 1]
+          item.lower_left  = board[outer_idx - 1][inner_idx - 1]
+          item.lower_right = board[outer_idx - 1][inner_idx + 1]
+        else
+          next
+        end
+      end
+    end
+    return
+  end
 end
