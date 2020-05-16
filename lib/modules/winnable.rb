@@ -13,19 +13,22 @@ module Winnable
   end
 
   ["horizontal_win?", "vertical_win?"].each do |method|
-    define_method(method) do |line_array|
+    define_method(method) do |board|
       # Check 4 items at a time eg. `[i..(i+3)]` for win conditions.
       # iterate over array to check all spaces. 4 times is the minimum
       # amount of steps needed to check all positions
-      4.times do |i|
-        ['red', 'black'].each do |item|
-          test_group = line_array[i..(i + 3)]
-          if test_group.all? { |color| color == item }
-            return true unless test_group.size < 4
+      board.each do |line_array|
+        4.times do |i|
+          ['red', 'black'].each do |item|
+            test_group = line_array[i..(i + 3)]
+            if test_group.all? { |color| color == item }
+              return true unless test_group.size < 4
+            end
           end
         end
       end
-      false
     end
+    false
   end
+
 end
