@@ -33,7 +33,10 @@ module Traversable
     rows = []
     board_array.each do |row|
       colors = []
-      row.each { |node| colors << node.color }
+      row.each do |node| 
+        colors << node.color if node.is_a? Cell
+        colors << nil if node.nil?
+      end
       rows << colors
     end
     rows
@@ -44,7 +47,11 @@ module Traversable
     7.times do |horz_idx|
       colors = []
       6.times do |vert_idx|
-        colors << board_array[vert_idx][horz_idx].color
+        if board_array[vert_idx][horz_idx].is_a? Cell
+          colors << board_array[vert_idx][horz_idx].color
+        else
+          colors << nil 
+        end
       end
       columns << colors
     end
