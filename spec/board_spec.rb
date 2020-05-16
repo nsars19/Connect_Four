@@ -15,8 +15,21 @@ describe 'Board' do
   end
 
   describe '#place_piece' do
-    it 'places a piece in @board'
-    it 'creates a cell'
+    let(:cell) { Cell.new 'black' }
+    let(:player) { Board::Player.new('red') }
+    
+    it 'places a piece in @board' do
+      spot = game.board[0][4]
+      expect { game.place_piece(player.color, 5) }.to change { game.board[0][4] }.from(nil).to(Cell)
+    end
+    it 'creates one cell' do
+      expect { game.place_piece(player.color, 2) }.to change { Cell.count }.by(1)
+    end
+    it 'calls itself with a new selection if column is full' do
+      6.times { |i| game.board[i][4] = Cell.new 'red' }
+      allow(STDIN).to receive(:gets).and_return("1\n")
+      expect { game.place_piece('red', 5) }.to change { game.board[0][0] }.to Cell
+    end
   end
 
   describe '#over?' do
