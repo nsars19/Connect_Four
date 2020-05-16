@@ -1,6 +1,6 @@
 module Winnable
-  def diagonal_win? line_array
-    line_array.each do |line|
+  def diagonal_win? diagonals
+    diagonals.each do |line|
       next if line.size < 4
       3.times do |i|
         ['red', 'black'].each do |item|
@@ -27,8 +27,8 @@ module Winnable
           end
         end
       end
+      false
     end
-    false
   end
 
 end
