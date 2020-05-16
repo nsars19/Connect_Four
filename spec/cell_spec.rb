@@ -63,9 +63,9 @@ describe "Cell" do
     end
   end
 
-  context "finding win conditions" do
-    let(:true_row) { ['red', 'red', 'red', 'red'] }
-    let(:false_row) { ['red', 'black', 'red'] }
+  context "when finding win conditions" do
+    let(:true_row) { [['red', 'red', 'red', 'red']] }
+    let(:false_row) { [['red', 'black', 'red', nil]] }
     
     # Create examples for each of the _win? methods
     # examples check for true with four-in-a-row of the same color
@@ -83,8 +83,8 @@ describe "Cell" do
     end
 
     describe "#diagonal_win?" do
-      let(:row_true) { [['red', 'red', 'red', 'red'], ['red','red','black']]}
-      let(:row_false) { [['red','red'], ['black', 'red']]}
+      let(:row_true) { [['red', 'red', 'red', 'red'], ['red','red','black']] }
+      let(:row_false) { [['red','red'], ['black', 'red']] }
       it "returns true with four in a row" do
         expect(cell.diagonal_win?(row_true)).to be true
       end
