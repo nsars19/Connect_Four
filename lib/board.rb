@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative 'cell'
 require_relative './modules/traversal'
 require_relative './modules/winnable'
@@ -11,6 +13,27 @@ class Board
     @board = Array.new(6) { Array.new(7) }
   end
 
+  def self.play
+    game = Board.new
+    player1 = Player.new '⚪', 1
+    player2 = Player.new '⚫', 2
+
+    until game.over?
+      [player1, player2].each do |player|
+        puts "Player #{player.number} ( #{player.color}) It's your turn! Pick a spot from 1 - 7"
+        choice = gets.to_i
+        while choice > 7 || choice < 1
+         choice = game.choose_again
+        end
+        game.place_piece(player.color, choice)
+        game.over?
+        game.display_board
+      end
+    end
+      
+    puts "GAME OVER!!"
+  end
+
   def place_piece player_color, choice
     choice = (choice > 7 || choice < 1) ? choose_again : choice
     @board.each do |row|
@@ -19,27 +42,14 @@ class Board
     new_choice = self.choose_again
     place_piece(player_color, new_choice)
   end
-
-  def choose_again
-    puts "please choose another space"
-    choice = STDIN.gets.to_i
-    until choice > 0 && choice < 8
-      choice = STDIN.gets.to_i
-    end
-    choice
-  end
-
+  
   def over?
     %w[diagonal horizontal vertical].each do |method|
       lines = self.send("get_#{method}s", @board)
       return true if self.send("#{method}_win?", lines)
     end
-    return true if self.board_full?
+    return true if board_full?
     false
-  end
-
-  def board_full?
-    Cell.count == 42 ? true : false
   end
 
   def display_board
@@ -56,11 +66,27 @@ class Board
     return nil
   end
 
-  class Player
-    attr_reader :color
+  def choose_again
+    puts "please choose another space"
+    choice = STDIN.gets.to_i
+    until choice > 0 && choice < 8
+      choice = STDIN.gets.to_i
+    end
+    choice
+  end
 
-    def initialize color
+  def board_full?
+    Cell.count == 42 ? true : false
+  end
+
+  class Player
+    attr_reader :color, :number
+
+    def initialize color, number
       @color = color
+      @number = number
     end
   end
 end
+
+Board.play
