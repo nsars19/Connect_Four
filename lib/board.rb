@@ -12,6 +12,7 @@ class Board
   end
 
   def place_piece player_color, choice
+    choice = (choice > 7 || choice < 1) ? choose_again : choice
     @board.each do |row|
       return row[choice - 1] = Cell.new(player_color) if row[choice - 1].nil?
     end
@@ -20,7 +21,7 @@ class Board
   end
 
   def choose_again
-    puts "please choose another space. that column is full!"
+    puts "please choose another space"
     choice = STDIN.gets.to_i
     until choice > 0 && choice < 8
       choice = STDIN.gets.to_i
@@ -29,13 +30,9 @@ class Board
   end
 
   def over?
-    [:diagonal_win?, :horizontal_win?, :vertical_win?].each do |method|
-      if method == :diagonal_win?
-        diags = self.get_diagonals @board
-        return true if self.send(method, diags)
-      else
-        return true if self.send(method, @board)
-      end
+    %w[diagonal horizontal vertical].each do |method|
+      lines = self.send("get_#{method}s", @board)
+      return true if self.send("#{method}_win?", lines)
     end
     return true if self.board_full?
     false
