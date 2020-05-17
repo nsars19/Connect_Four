@@ -3,10 +3,8 @@ module Winnable
     diagonals.each do |line|
       next if line.size < 4
       3.times do |i|
-        ['red', 'black'].each do |item|
-          all_same = line[i..(i + 3)].all? { |color| color == item }
-          return true if all_same 
-        end
+        all_same = line[i..(i + 3)].all? { |color| color == line[i] }
+        return true if all_same 
       end
     end
     false
@@ -19,11 +17,9 @@ module Winnable
       # amount of steps needed to check all positions
       board.each do |line_array|
         4.times do |i|
-          ['red', 'black'].each do |item|
-            test_group = line_array[i..(i + 3)]
-            if test_group.all? { |color| color == item }
-              return true unless test_group.size < 4
-            end
+          test_group = line_array[i..(i + 3)]
+          if test_group.all? { |color| color == line_array[i] && !color.nil? }
+            return true unless test_group.size < 4
           end
         end
       end
