@@ -33,14 +33,14 @@ describe 'Board' do
   end
 
   describe '#over?' do
-    it 'returns true if win'
+    it 'returns true if win' do
+      (1..4).each do |num|
+        num.times { game.place_piece 'red', num }
+      end
+      diags = game.get_diagonals game.board
+      expect(game.over?).to be true
+    end
     it 'returns false if no win'
-  end
-
-  describe '#check_if_win' do
-    it 'checks diagonally'
-    it 'checks vertically'
-    it 'checks horizontally'
   end
 
   describe '#display_board' do
