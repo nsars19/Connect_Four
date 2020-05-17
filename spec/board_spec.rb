@@ -16,7 +16,7 @@ describe 'Board' do
 
   describe '#place_piece' do
     let(:cell) { Cell.new 'black' }
-    let(:player) { Board::Player.new('red') }
+    let(:player) { Board::Player.new('red', 1) }
     
     it 'places a piece in @board' do
       spot = game.board[0][4]
