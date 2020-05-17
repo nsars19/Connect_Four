@@ -55,7 +55,24 @@ describe 'Board' do
     end
   end
 
+  describe "#board_full?" do
+    it "calls .count on Cell" do
+      expect(Cell).to receive(:count)
+      game.board_full?
+    end
+    it "returns true with 42 pieces" do
+      42.times { Cell.new 'ultraviolet' }
+      game.board_full?
+    end
+    it "returns false with < 42 pieces" do
+      23.times { Cell.new 'infrared' }
+      game.board_full?
+    end
+  end
+
   describe '#display_board' do
-    it 'outputs to stdout'
+    it 'outputs to stdout' do
+      expect { game.display_board }.to output.to_stdout
+    end
   end
 end
