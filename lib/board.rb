@@ -29,6 +29,7 @@ class Board
   end
 
   def over?
+    return true if self.board_full?
     [:diagonal_win?, :horizontal_win?, :vertical_win?].each do |method|
       if method == :diagonal_win?
         diags = self.get_diagonals @board
@@ -38,6 +39,10 @@ class Board
       end
     end
     false
+  end
+
+  def board_full?
+    Cell.count == 42 ? true : false
   end
 
   class Player
