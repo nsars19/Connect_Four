@@ -45,6 +45,20 @@ class Board
     Cell.count == 42 ? true : false
   end
 
+  def display_board
+    puts " " + "_" * 24
+    @board.reverse.each do |row|
+      print "||".rjust 3
+      row.each do |item|
+        print "  |" if item.nil? 
+        print "#{item.color}|" if item.is_a? Cell
+      end
+      puts "|"
+    end
+    puts " " + "-".*(24).rjust(12)
+    return nil
+  end
+
   class Player
     attr_reader :color
 
