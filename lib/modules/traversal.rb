@@ -13,14 +13,24 @@ module Traversable
     end
   end
 
-  def get_diagonals
-    up_left   = self.get_upper_left_diagonals
-    up_right  = self.get_upper_right_diagonals
-    low_left  = self.get_lower_left_diagonals
-    low_right = self.get_lower_right_diagonals
-    first_diagonal  = combine_diagonals(up_left, low_right)
-    second_diagonal = combine_diagonals(up_right, low_left)
-    [first_diagonal, second_diagonal]
+  def get_diagonals board
+    diagonals = []
+    board.each do |line|
+      line.each do |item|
+        if item.nil?
+          next
+        else
+          up_left   = item.get_upper_left_diagonals
+          low_right = item.get_lower_right_diagonals
+          up_right  = item.get_upper_right_diagonals
+          low_left  = item.get_lower_left_diagonals
+          diagonals << item.combine_diagonals(up_left, low_right)
+          diagonals << item.combine_diagonals(up_right, low_left)
+        end
+      end
+    end
+    self.connect_nodes board
+    diagonals.select { |item| item.size > 1 }
   end
 
   def combine_diagonals upper, lower
@@ -50,7 +60,7 @@ module Traversable
         if board_array[vert_idx][horz_idx].is_a? Cell
           colors << board_array[vert_idx][horz_idx].color
         else
-          colors << nil 
+          next
         end
       end
       columns << colors
