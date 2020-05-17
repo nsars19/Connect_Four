@@ -50,15 +50,13 @@ describe "Cell" do
     end
 
     describe '#get_diagonals' do
-      let(:left_1) { Cell.new 'black' }
-      let(:left_2) { Cell.new 'black' }
-      let(:right_1) { Cell.new 'black' }
-      let(:right_2) { Cell.new 'red' }
       it 'returns nested arrays with strings' do
-        cell.upper_left = left_1; left_1.upper_left = left_2
-        cell.lower_right = right_1; right_1.lower_right = right_2
-        colors = [['red', 'black', 'red', 'black', 'black'],['red']]
-        expect(cell.get_diagonals).to eql colors
+        2.times do |j|
+          2.times { |i| game.board[i][j] = Cell.new 'red' }
+        end
+        game.connect_nodes game.board
+        colors = [['red', 'red'],['red', 'red'],['red', 'red'],['red', 'red']]
+        expect(cell.get_diagonals(game.board)).to eql colors
       end
     end
   end
