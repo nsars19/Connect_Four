@@ -40,7 +40,19 @@ describe 'Board' do
       diags = game.get_diagonals game.board
       expect(game.over?).to be true
     end
-    it 'returns false if no win'
+    it 'returns false if no win' do
+      [1, 4, 6].each do |num|
+        ['black', 'red'].each do |color|
+          3.times { game.place_piece(color, num) }
+        end
+      end
+      [2, 3, 5, 7].each do |num|
+        ['red', 'black'].each do |color|
+          3.times { game.place_piece(color, num) }
+        end
+      end
+      expect(game.over?).to be false
+    end
   end
 
   describe '#display_board' do
