@@ -22,13 +22,20 @@ describe 'Board' do
       spot = game.board[0][4]
       expect { game.place_piece(player.color, 5) }.to change { game.board[0][4] }.from(nil).to(Cell)
     end
+
     it 'creates one cell' do
       expect { game.place_piece(player.color, 2) }.to change { Cell.count }.by(1)
     end
+
     it 'calls itself with a new selection if column is full' do
       6.times { |i| game.board[i][4] = Cell.new 'red' }
       allow(STDIN).to receive(:gets).and_return("1\n")
       expect { game.place_piece('red', 5) }.to change { game.board[0][0] }.to Cell
+    end
+
+    it 'does not allow a choice > 7 OR choice < 1' do
+      allow($stdin).to receive(:gets).and_return("1\n")
+      expect { game.place_piece('red', 10) }.to change { game.board[0][0] }.to Cell
     end
   end
 
