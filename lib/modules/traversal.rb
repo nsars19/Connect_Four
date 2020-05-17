@@ -69,13 +69,13 @@ module Traversable
   end
 
   def connect_nodes board
-    board.each_with_index do |line, outer_idx|
-      line.each_with_index do |item, inner_idx|
+    board.each_with_index do |line, outer|
+      line.each_with_index do |item, inner|
         if item.is_a? Cell
-          item.upper_left  = board[outer_idx + 1][inner_idx - 1]
-          item.upper_right = board[outer_idx + 1][inner_idx + 1]
-          item.lower_left  = board[outer_idx - 1][inner_idx - 1]
-          item.lower_right = board[outer_idx - 1][inner_idx + 1]
+          item.upper_left  = board[outer + 1][inner - 1] unless inner == 0 || outer == 5
+          item.upper_right = board[outer + 1][inner + 1] unless inner == 6 || outer == 5
+          item.lower_left  = board[outer - 1][inner - 1] unless inner == 0 || outer == 0
+          item.lower_right = board[outer - 1][inner + 1] unless inner == 6 || outer == 0
         else
           next
         end
