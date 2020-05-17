@@ -29,7 +29,6 @@ class Board
   end
 
   def over?
-    return true if self.board_full?
     [:diagonal_win?, :horizontal_win?, :vertical_win?].each do |method|
       if method == :diagonal_win?
         diags = self.get_diagonals @board
@@ -38,6 +37,7 @@ class Board
         return true if self.send(method, @board)
       end
     end
+    return true if self.board_full?
     false
   end
 
