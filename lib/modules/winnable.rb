@@ -31,5 +31,4 @@ module Winnable
       false
     end
   end
-
 end
