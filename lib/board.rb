@@ -26,11 +26,11 @@ class Board
          choice = game.choose_again
         end
         game.place_piece(player.color, choice)
-        game.over?
+        break if game.over?
         game.display_board
       end
     end
-      
+    game.display_board  
     puts "GAME OVER!!"
   end
 
