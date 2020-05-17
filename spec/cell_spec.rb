@@ -61,6 +61,17 @@ describe "Cell" do
     end
   end
 
+  describe "#connect_nodes" do
+    let(:game) { Board.new }
+
+    it "connects nodes based on relation in board" do
+      2.times { game.place_piece 'red', 1 }
+      game.place_piece 'red', 2
+      test_spot = game.board[1][0]
+      expect { game.connect_nodes(game.board) }.to change { test_spot.lower_right }.from(nil).to(game.board[0][1])
+    end
+  end
+
   context "when finding win conditions" do
     let(:true_row) { [['red', 'red', 'red', 'red']] }
     let(:false_row) { [['red', 'black', 'red', nil]] }
