@@ -21,11 +21,23 @@ class Board
 
   def choose_again
     puts "please choose another space. that column is full!"
-    choice = STDIN.gets.chomp.to_i
+    choice = STDIN.gets.to_i
     until choice > 0 && choice < 8
-      choice = STDIN.gets.chomp.to_i
+      choice = STDIN.gets.to_i
     end
     choice
+  end
+
+  def over?
+    [:diagonal_win?, :horizontal_win?, :vertical_win?].each do |method|
+      if method == :diagonal_win?
+        diags = self.get_diagonals @board
+        return true if self.send(method, diags)
+      else
+        return true if self.send(method, @board)
+      end
+    end
+    false
   end
 
   class Player
